@@ -1,0 +1,20 @@
+{
+    "name": "robinthehood/sql-builder",
+    "description": "",
+    "type": "library",
+    "require": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robin Wieschendorf",
+            "email": "mail@robinwieschendorf.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SqlBuilder\\": "src/"
+        }
+
+    }
+}
