@@ -3,13 +3,14 @@ namespace SqlBuilder;
 
 use SqlBuilder\SqlWhere;
 
-class SqlSelect
+class SqlSelect extends SqlBuilder
 {
     private $params;
     private $table;
     private $where;
     private $orderBy;
-    private $root;
+    private $limit1 = null;
+    private $limit2 = null;
 
     public function __construct($root, $params)
     {
@@ -35,6 +36,15 @@ class SqlSelect
         return $this;
     }
 
+    public function limit($limit1, $limit2 = null)
+    {
+        $this->limit1 = (int) $limit1;
+        if ($limit2 != null) {
+            $this->limit2 = (int) $limit2;
+        }
+        return $this;
+    }
+
     public function sql()
     {
         $sql = "SELECT {$this->params} ";
@@ -49,6 +59,12 @@ class SqlSelect
 
         if ($this->orderBy) {
             $sql .= "ORDER BY `{$this->orderBy}` ";
+        }
+
+        if ($this->limit1 != null && $this->limit2 != null) {
+            $sql .= "LIMIT {$this->limit1}, {$this->limit2} ";
+        } elseif ($this->limit1 != null) {
+            $sql .= "LIMIT {$this->limit1} ";
         }
 
         return $sql;

@@ -1,7 +1,7 @@
 <?php
 namespace SqlBuilder;
 
-class SqlUpdate extends SqlBuilder
+class SqlDelete extends SqlBuilder
 {
     private $table;
     private $values;
@@ -33,20 +33,10 @@ class SqlUpdate extends SqlBuilder
 
     public function sql()
     {
-        $sql = "UPDATE `{$this->table}` SET ";
-
-        $count = 0;
-        foreach($this->values as $columnName => $value) {
-            $sql .= "`$columnName` = {$this->root->nextMapping($value)}";
-
-            // Add , to the string as long as it is not the last interation.
-            if (++$count < count($this->values)) {
-               $sql .= ', ';
-            }
-        }
+        $sql = "DELETE FROM `{$this->table}` ";
 
         if ($this->where) {
-            $sql .= " " . $this->where->sql(true);
+            $sql .= $this->where->sql(true);
         }
 
         return $sql;

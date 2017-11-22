@@ -6,20 +6,22 @@ use SqlBuilder\SqlInsert;
 
 class SqlBuilder
 {
-    private $child;
+    protected $root;
+    protected $child;
 
     private $mappings;
     private $mappingIndex;
 
     public function __construct()
     {
+        $this->root = $this;
         $this->mappings = [];
         $this->mappingIndex = 0;
     }
 
     public function select($params)
     {
-        $this->child = new SqlSelect($this, $params);
+        $this->child = new SqlSelect($this->root, $params);
         return $this->child;
     }
 
@@ -29,10 +31,22 @@ class SqlBuilder
         return $this->child;
     }
 
+    public function update()
+    {
+        $this->child = new SqlUpdate($this);
+        return $this->child;
+    }
+
+    public function delete()
+    {
+        $this->child = new SqlDelete($this);
+        return $this->child;
+    }
+
     public function nextMapping($value)
     {
-        $index = 'v' . ++$this->mappingIndex;
-        $this->mappings[] = [$index => $value];
+        $index = ':v' . ++$this->mappingIndex;
+        $this->mappings[$index] = $value;
         return $index;
     }
 
@@ -43,6 +57,6 @@ class SqlBuilder
 
     public function getMappings()
     {
-        return $this->mappings;
+        return $this->root->mappings;
     }
 }

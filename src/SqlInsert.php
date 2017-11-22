@@ -1,13 +1,10 @@
 <?php
 namespace SqlBuilder;
 
-class SqlInsert
+class SqlInsert extends SqlBuilder
 {
     private $table;
     private $values;
-
-    private $mappings;
-    private $mappingIndex;
 
     public function __construct($root)
     {
@@ -44,7 +41,7 @@ class SqlInsert
         $count = 0;
         $valuesString = '';
         foreach ($this->values as $columnName => $value) {
-            $valuesString .= ":{$this->root->nextMapping($value)}";
+            $valuesString .= "{$this->root->nextMapping($value)}";
 
             // Add , to the string as long as it is not the last interation.
             if (++$count < count($this->values)) {
