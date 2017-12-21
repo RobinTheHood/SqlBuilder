@@ -58,7 +58,7 @@ class SqlSelect extends SqlBuilder
         }
 
         if ($this->orderBy) {
-            $sql .= "ORDER BY `{$this->orderBy}` ";
+            $sql .= "ORDER BY {$this->orderBy} ";
         }
 
         if ($this->limit1 != null && $this->limit2 != null) {
