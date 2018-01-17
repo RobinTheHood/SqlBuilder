@@ -1,8 +1,8 @@
 <?php
-namespace SqlBuilder;
+namespace RobinTheHood\SqlBuilder;
 
-use SqlBuilder\SqlSelect;
-use SqlBuilder\SqlInsert;
+use RobinTheHood\SqlBuilder\SqlSelect;
+use RobinTheHood\SqlBuilder\SqlInsert;
 
 class SqlBuilder
 {

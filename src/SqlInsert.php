@@ -1,5 +1,5 @@
 <?php
-namespace SqlBuilder;
+namespace RobinTheHood\SqlBuilder;
 
 class SqlInsert extends SqlBuilder
 {

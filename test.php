@@ -1,7 +1,7 @@
 <?php
 require_once 'vendor/autoload.php';
 
-use SqlBuilder\SqlBuilder;
+use RobinTheHood\SqlBuilder\SqlBuilder;
 
 echo "*** Test 1 ***\n";
 $query = new SqlBuilder();

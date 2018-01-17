@@ -1,7 +1,7 @@
 <?php
-namespace SqlBuilder;
+namespace RobinTheHood\SqlBuilder;
 
-use SqlBuilder\SqlWhere;
+use RobinTheHood\SqlBuilder\SqlWhere;
 
 class SqlSelect extends SqlBuilder
 {
